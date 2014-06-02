@@ -1,0 +1,14 @@
+th.sorted-column-asc {
+    background: linear-gradient(lightgrey, black);
+    background-size: 10px 25px;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+th.sorted-column-desc {
+    background: linear-gradient(black, lightgrey);
+    background-size: 10px 25px;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+

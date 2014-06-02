@@ -58,18 +58,25 @@
         <label for="restaurants-select">Restaurant</label>
       </div>
     </script>
+    <script type="text/x-underscore-template" id="t-order-container">
+        <div class="form-group" id="restaurants-select-group">
+            <label for="restaurants-select">Restaurant</label>
+        </div>
+    </script>
     <script type="text/x-underscore-template" id="t-menu">
       <% if (typeof menu !== 'undefined') { _.each(menu, function (meals, category) { %>
         <h2><%= category %></h2>
         <table class="table">
           <thead>
             <th>Name</th>
+            <th>Description</th>
             <th>Price</th>
           </thead>
           <tbody>
             <% _.each(meals, function (meal) { %>
               <tr>
                 <td><%= meal.name %></td>
+                <td><%= meal.description %></td>
                 <td><%= meal.startingFromPrice %></td>
               </tr>
             <% }); %>
@@ -78,9 +85,6 @@
       <% }); } %>
     </script>
     <script type="text/x-underscore-template" id="t-orders">
-      <div class="form-group" id="restaurants-select-group">
-        <label for="restaurants-select">Restaurant</label>
-      </div>
       <table class="table">
         <thead>
           <th>Date</th>
@@ -89,6 +93,17 @@
           <th>Total</th>
         </thead>
         <tbody>
+            <% _.each(orders, function (order) {
+                if (typeof order.orderId !== 'undefined') {%>
+                <tr>
+                    <td><% var d = new Date(order.created),
+                        fragments = [d.getDate(), d.getMonth() + 1, d.getFullYear()];
+                        print(fragments.join('/')); %></td>
+                    <td><%= order.status %></td>
+                    <td><%= order.collectionType %></td>
+                    <td><%= order.totalValue %>&nbsp;<%= order.currencyDisplay %></td>
+                </tr>
+            <% }}); %>
         </tbody>
       </table>
     </script>
